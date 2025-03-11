@@ -60,7 +60,7 @@
                         <label><b>Task Title:</b></label>
                         <input type="text" name="taskTitle" value="<%= ServletUtility.getParameter("taskTitle", request) %>">&nbsp;
                         <label><b>Creation Date:</b></label>
-                        <input type="date" name="creationDate" id="udate" value="<%= ServletUtility.getParameter("creationDate", request) %>">&nbsp;
+                        <input type="text" name="creationDate" id="udate" value="<%= ServletUtility.getParameter("creationDate", request) %>">&nbsp;
                         <label><b>Details:</b></label>
                         <input type="text" name="details" value="<%= ServletUtility.getParameter("details", request) %>">&nbsp;
                         <input type="submit" name="operation" value="<%= TaskListCtl.OP_SEARCH %>"> &nbsp;

@@ -33,6 +33,10 @@ public class TaskListCtl extends BaseCtl {
 	protected BaseBean populateBean(HttpServletRequest request) {
 		TaskBean bean = new TaskBean();
 		bean.setTaskTitle(DataUtility.getString(request.getParameter("taskTitle")));
+		bean.setCreationDate(DataUtility.getDate(request.getParameter("creationDate")));
+		bean.setDetails(DataUtility.getString(request.getParameter("details")));
+		bean.setAssignedTo(DataUtility.getString(request.getParameter("assignedTo")));
+		bean.setTaskStatus(DataUtility.getString(request.getParameter("taskStatus")));
 		return bean;
 	}
 

@@ -1,7 +1,7 @@
 package com.rays.pro4.Model;
 
 import java.sql.Connection;
-
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -12,6 +12,7 @@ import com.rays.pro4.Bean.TaskBean;
 import com.rays.pro4.Exception.ApplicationException;
 import com.rays.pro4.Exception.DatabaseException;
 import com.rays.pro4.Exception.DuplicateRecordException;
+import com.rays.pro4.Util.DataUtility;
 import com.rays.pro4.Util.JDBCDataSource;
 
 public class TaskModel {
@@ -251,9 +252,16 @@ public class TaskModel {
 
 		StringBuffer sql = new StringBuffer("select * from st_task where 1=1");
 
-		if (bean != null) {
+		    if (bean != null) {
 			if (bean.getTaskTitle() != null && bean.getTaskTitle().length() > 0) {
 				sql.append(" and task_title like '" + bean.getTaskTitle() + "%'");
+			}
+			if (bean.getCreationDate() != null && bean.getCreationDate().getTime() > 0) {
+				Date d = new Date(bean.getCreationDate().getTime());
+				sql.append(" AND creationDate = " + DataUtility.getDateString(d));
+			}
+			if (bean.getDetails() != null && bean.getDetails().length() > 0) {
+				sql.append(" AND details like '" + bean.getDetails() + "%'");
 			}
 			
 		}
