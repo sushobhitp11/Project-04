@@ -111,7 +111,6 @@ public class TaskListCtl extends BaseCtl {
 
 		try {
 
-			if (OP_SEARCH.equalsIgnoreCase(op) || "Next".equalsIgnoreCase(op) || "Previous".equalsIgnoreCase(op)) {
 
 				if (OP_SEARCH.equalsIgnoreCase(op)) {
 					pageNo = 1;
@@ -120,7 +119,7 @@ public class TaskListCtl extends BaseCtl {
 				} else if (OP_PREVIOUS.equalsIgnoreCase(op) && pageNo > 1) {
 					pageNo--;
 				}
-			} else if (OP_NEW.equalsIgnoreCase(op)) {
+			 else if (OP_NEW.equalsIgnoreCase(op)) {
 				ServletUtility.redirect(ORSView.TASK_CTL, request, response);
 				return;
 			} else if (OP_DELETE.equalsIgnoreCase(op)) {

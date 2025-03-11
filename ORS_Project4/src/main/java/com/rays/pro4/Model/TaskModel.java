@@ -258,7 +258,7 @@ public class TaskModel {
 			}
 			if (bean.getCreationDate() != null && bean.getCreationDate().getTime() > 0) {
 				Date d = new Date(bean.getCreationDate().getTime());
-				sql.append(" AND creationDate = " + DataUtility.getDateString(d));
+				sql.append(" AND creation_Date = " + DataUtility.getDateString(d));
 			}
 			if (bean.getDetails() != null && bean.getDetails().length() > 0) {
 				sql.append(" AND details like '" + bean.getDetails() + "%'");

@@ -19,6 +19,7 @@
 <script src="<%=ORSView.APP_CONTEXT%>/js/Checkbox11.js"></script>
 </head>
 <body>
+     <form action="<%=ORSView.TASK_LIST_CTL%>" method="post">
      <%@include file="Header.jsp"%>
 	<div align="center">
 		<h1 align="center" style="margin-bottom: -15; color: navy;"></h1>
