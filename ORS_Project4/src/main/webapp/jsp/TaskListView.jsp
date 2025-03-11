@@ -73,7 +73,7 @@
 
             <table border="1" style="width: 100%">
                 <tr style="background-color: lavender; color: black;">
-                    <th><input type="checkbox" id="selectall">
+                    <th><input type="checkbox" class="checkbox" name="ids" value="<%=bean.getId() %>">
 					</th>
                     <th width="5%">S.No.</th>
                     <th width="20%">Creation Date</th>
