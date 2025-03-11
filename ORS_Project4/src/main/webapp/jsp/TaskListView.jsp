@@ -74,8 +74,7 @@
 
             <table border="1" style="width: 100%">
                 <tr style="background-color: lavender; color: black;">
-                    <th><input type="checkbox" class="checkbox" name="ids" value="<%=bean.getId() %>">
-					</th>
+                    <th><input type="checkbox" id="select_all" name="select">SelectAll</th>
                     <th width="5%">S.No.</th>
                     <th width="20%">Creation Date</th>
                     <th width="15%">Task Title</th>
@@ -89,7 +88,7 @@
                         TaskBean taskBean = (TaskBean) it.next();
                 %>
                 <tr align="center">
-                    <td><input type="checkbox" class="case" name="ids" value="<%=taskBean.getId() %>"></td>
+                    <td><input type="checkbox" class="checkbox" name="ids" value="<%=taskBean.getId() %>"></td>
                     <td style="text-align: center;"><%= index++ %></td>
                     <td style="text-align: center; text-transform: capitalize;"><%= taskBean.getCreationDate() %></td>
                     <td style="text-align: center; text-transform: capitalize;"><%= taskBean.getTaskTitle() %></td>
