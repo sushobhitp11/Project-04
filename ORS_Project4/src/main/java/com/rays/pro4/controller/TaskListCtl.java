@@ -22,13 +22,13 @@ import com.rays.pro4.Util.DataUtility;
 import com.rays.pro4.Util.PropertyReader;
 import com.rays.pro4.Util.ServletUtility;
 
-@WebServlet (name = "TaskListCtl" , urlPatterns = {"/ctl/TaskListCtl"})
+@WebServlet(name = "TaskListCtl", urlPatterns = { "/ctl/TaskListCtl" })
 public class TaskListCtl extends BaseCtl {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	private static Logger log = Logger.getLogger(SubjectListCtl.class);
-	
+
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
 		TaskBean bean = new TaskBean();
@@ -41,8 +41,9 @@ public class TaskListCtl extends BaseCtl {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		log.debug("TaskListCtl doGet Start");
 
 		System.out.println("insdie get method Task ctl");
@@ -90,9 +91,11 @@ public class TaskListCtl extends BaseCtl {
 		ServletUtility.forward(getView(), request, response);
 		log.debug("TaskListCtl doGet End");
 	}
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		log.debug("TaskListCtl doPost Start");
 		List list = null;
 		List next = null;
@@ -111,15 +114,13 @@ public class TaskListCtl extends BaseCtl {
 
 		try {
 
-
-				if (OP_SEARCH.equalsIgnoreCase(op)) {
-					pageNo = 1;
-				} else if (OP_NEXT.equalsIgnoreCase(op)) {
-					pageNo++;
-				} else if (OP_PREVIOUS.equalsIgnoreCase(op) && pageNo > 1) {
-					pageNo--;
-				}
-			 else if (OP_NEW.equalsIgnoreCase(op)) {
+			if (OP_SEARCH.equalsIgnoreCase(op)) {
+				pageNo = 1;
+			} else if (OP_NEXT.equalsIgnoreCase(op)) {
+				pageNo++;
+			} else if (OP_PREVIOUS.equalsIgnoreCase(op) && pageNo > 1) {
+				pageNo--;
+			} else if (OP_NEW.equalsIgnoreCase(op)) {
 				ServletUtility.redirect(ORSView.TASK_CTL, request, response);
 				return;
 			} else if (OP_DELETE.equalsIgnoreCase(op)) {
@@ -169,10 +170,10 @@ public class TaskListCtl extends BaseCtl {
 		}
 		log.debug("TaskListCtl doGet End");
 	}
+
 	@Override
 	protected String getView() {
 		return ORSView.TASK_LIST_VIEW;
 	}
 
 }
-

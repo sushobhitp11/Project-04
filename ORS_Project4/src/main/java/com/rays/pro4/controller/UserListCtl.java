@@ -150,7 +150,7 @@ public class UserListCtl extends BaseCtl{
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 		
-//		System.out.println("prince bharti dopost");
+//		System.out.println(" dopost");
 		UserBean bean = (UserBean) populateBean(request);
 		// get the selected checkbox ids array for delete list
 		String[] ids = request.getParameterValues("ids");

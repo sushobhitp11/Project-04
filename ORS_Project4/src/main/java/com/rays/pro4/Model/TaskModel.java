@@ -16,11 +16,11 @@ import com.rays.pro4.Util.DataUtility;
 import com.rays.pro4.Util.JDBCDataSource;
 
 public class TaskModel {
-	
+
 	private static Logger log = Logger.getLogger(StudentModel.class);
 
 	public Integer nextPk() throws Exception {
-		
+
 		log.debug("Model nextPK Started");
 		Connection conn = null;
 		int pk = 0;
@@ -46,7 +46,7 @@ public class TaskModel {
 	}
 
 	public long add(TaskBean bean) throws Exception {
-		
+
 		log.debug("Model add Started");
 		System.out.println("add started");
 
@@ -64,9 +64,8 @@ public class TaskModel {
 
 			System.out.println(pk + " in ModelJDBC");
 			conn.setAutoCommit(false); // Begin transaction
-			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO st_task VALUES(?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement pstmt = conn.prepareStatement("insert into st_task values(?,?,?,?,?,?,?,?,?,?)");
 			pstmt.setLong(1, pk);
-
 
 			pstmt.setDate(2, new java.sql.Date(bean.getCreationDate().getTime()));
 			pstmt.setString(3, bean.getTaskTitle());
@@ -111,9 +110,8 @@ public class TaskModel {
 			conn = JDBCDataSource.getConnection();
 			conn.setAutoCommit(false);
 			PreparedStatement pstmt = conn.prepareStatement(
-					"UPDATE st_task SET creation_date=?,task_title=?,details=?,assigned_to=?,task_status=?,created_by=?,modified_by=?,created_datetime=?,modified_datetime=? where id=?");
+					"update st_task SET creation_date=?,task_title=?,details=?,assigned_to=?,task_status=?,created_by=?,modified_by=?,created_datetime=?,modified_datetime=? where id=?");
 
-	
 			pstmt.setDate(1, new java.sql.Date(bean.getCreationDate().getTime()));
 			pstmt.setString(2, bean.getTaskTitle());
 			pstmt.setString(3, bean.getDetails());
@@ -144,14 +142,15 @@ public class TaskModel {
 		log.debug("Model update End");
 
 	}
+
 	public void delete(long id) throws Exception {
-		
+
 		log.debug("Model delete Started");
 		Connection conn = null;
 		try {
 			conn = JDBCDataSource.getConnection();
 			conn.setAutoCommit(false);
-			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM st_task WHERE ID=?");
+			PreparedStatement pstmt = conn.prepareStatement("delete from st_task where id=?");
 			pstmt.setLong(1, id);
 			pstmt.executeUpdate();
 			conn.commit();
@@ -169,9 +168,10 @@ public class TaskModel {
 		}
 		log.debug("Model delete End");
 	}
+
 	public TaskBean findByPK(long pk) throws ApplicationException {
 		log.debug("Model findByPK Started");
-		StringBuffer sql = new StringBuffer("SELECT * FROM st_task WHERE ID=?");
+		StringBuffer sql = new StringBuffer("select * from st_task where id=?");
 		TaskBean bean = null;
 		Connection conn = null;
 		try {
@@ -206,7 +206,7 @@ public class TaskModel {
 
 	private TaskBean findByTaskTitle(String taskTitle) throws Exception {
 		log.debug("Model findBy TaskTitle Started");
-		StringBuffer sql = new StringBuffer("SELECT * FROM st_task WHERE id=?");
+		StringBuffer sql = new StringBuffer("select * from st_task where id=?");
 		TaskBean bean = null;
 		Connection conn = null;
 		try {
@@ -239,20 +239,21 @@ public class TaskModel {
 		log.debug("Model findBy Email End");
 		return bean;
 	}
+
 	public List list() throws Exception {
 		return search(null, 0, 0);
 	}
+
 	public List search(TaskBean bean) throws Exception {
 		return search(bean, 0, 0);
 	}
-
 
 	public List search(TaskBean bean, int pageNo, int pageSize) throws Exception {
 		log.debug("Model search Started");
 
 		StringBuffer sql = new StringBuffer("select * from st_task where 1=1");
 
-		    if (bean != null) {
+		if (bean != null) {
 			if (bean.getTaskTitle() != null && bean.getTaskTitle().length() > 0) {
 				sql.append(" and task_title like '" + bean.getTaskTitle() + "%'");
 			}
@@ -263,7 +264,7 @@ public class TaskModel {
 			if (bean.getDetails() != null && bean.getDetails().length() > 0) {
 				sql.append(" AND details like '" + bean.getDetails() + "%'");
 			}
-			
+
 		}
 
 		if (pageSize > 0) {
@@ -305,4 +306,3 @@ public class TaskModel {
 		return list;
 	}
 }
-

@@ -1,6 +1,7 @@
 <%@page import="com.rays.pro4.Util.HTMLUtility"%>
 <%@page import="com.rays.pro4.Util.DataUtility"%>
 <%@page import="com.rays.pro4.controller.TaskListCtl"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="com.rays.pro4.Bean.TaskBean"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
@@ -64,6 +65,16 @@
                         <input type="text" name="creationDate" id="udate" value="<%= ServletUtility.getParameter("creationDate", request) %>">&nbsp;
                         <label><b>Details:</b></label>
                         <input type="text" name="details" value="<%= ServletUtility.getParameter("details", request) %>">&nbsp;
+                        <label><b>Task Status:</b></label>
+                        <%
+							HashMap map1 = new HashMap();
+							map1.put("New", "New");
+							map1.put("Started", "Started");
+							map1.put("On Hold", "On Hold");
+							map1.put("Completed", "Completed");
+							map1.put("Closed", "Closed");
+							String hlist1 = HTMLUtility.getList("taskStatus", bean.getTaskStatus(), map1);
+						%> <%=hlist1%>
                         <input type="submit" name="operation" value="<%= TaskListCtl.OP_SEARCH %>"> &nbsp;
                         <input type="submit" name="operation" value="<%= TaskListCtl.OP_RESET %>">
                     </td>
