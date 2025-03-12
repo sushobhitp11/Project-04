@@ -264,6 +264,9 @@ public class TaskModel {
 			if (bean.getDetails() != null && bean.getDetails().length() > 0) {
 				sql.append(" AND details like '" + bean.getDetails() + "%'");
 			}
+			if(bean.getTaskStatus()!= null && bean.getTaskStatus().length()> 0) {
+				sql.append(" and task_status like '" + bean.getTaskStatus() + "%'");
+			}
 
 		}
 
