@@ -17,7 +17,7 @@ import com.rays.pro4.Util.JDBCDataSource;
 
 public class TaskModel {
 
-	private static Logger log = Logger.getLogger(StudentModel.class);
+	private static Logger log = Logger.getLogger(TaskModel.class);
 
 	public Integer nextPk() throws Exception {
 
@@ -236,7 +236,7 @@ public class TaskModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
-		log.debug("Model findBy Email End");
+		log.debug("Model findBy Task Title end");
 		return bean;
 	}
 
@@ -263,6 +263,9 @@ public class TaskModel {
 			}
 			if (bean.getDetails() != null && bean.getDetails().length() > 0) {
 				sql.append(" AND details like '" + bean.getDetails() + "%'");
+			}
+			if(bean.getTaskStatus()!= null && bean.getTaskStatus().length()> 0) {
+				sql.append(" and task_status like '" + bean.getTaskStatus() + "%'");
 			}
 
 		}
